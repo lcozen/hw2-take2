@@ -205,76 +205,141 @@ actor["name"] = "Anne Hathaway"
 actor.save
 
 #INSERT ROLES DATA
-# Batman Begins          Christian Bale        Bruce Wayne
-role = Role.new
+batman_begins = Movie.find_by({"title" => "Batman Begins"})
+the_dark_knight = Movie.find_by({"title" => "The Dark Knight"})
+the_dark_knight_rises = Movie.find_by({"title" => "The Dark Knight Rises"})
+
+christian_bale= Actor.find_by ({"name" => "Christian Bale"})
+
+role = Role.new 
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = christian_bale["id"]
 role["character_name"] = "Bruce Wayne"
 role.save
-# Batman Begins          Michael Caine         Alfred
-role = Role.new
+
+role = Role.new 
+role["movie_id"] = the_dark_knight["id"]
+role["actor_id"] = christian_bale["id"]
+role["character_name"] = "Bruce Wayne"
+role.save
+
+role = Role.new 
+role["movie_id"] = the_dark_knight_rises["id"]
+role["actor_id"] = christian_bale["id"]
+role["character_name"] = "Bruce Wayne"
+role.save
+
+michael_caine= Actor.find_by ({"name" => "Michael Caine"})
+
+role = Role.new 
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = michael_caine["id"] 
 role["character_name"] = "Alfred"
 role.save
-# Batman Begins          Liam Neeson           Ra's Al Ghul
-role = Role.new
-role["character_name"] = "Ra's Al Ahul"
+
+role = Role.new 
+role["movie_id"] = the_dark_knight["id"]
+role["actor_id"] = michael_caine["id"] 
+role["character_name"] = "Alfred"
 role.save
-# Batman Begins          Katie Holmes          Rachel Dawes
-role = Role.new
+
+liam_neeson= Actor.find_by ({"name" => "Liam Neeson"})
+
+
+role = Role.new 
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = liam_neeson["id"]
+role["character_name"] = "Ra's Al Ghul"
+role.save
+
+katie_holmes= Actor.find_by ({"name" => "Katie Holmes"})
+
+
+role = Role.new 
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = katie_holmes["id"] 
 role["character_name"] = "Rachel Dawes"
 role.save
-# Batman Begins          Gary Oldman           Commissioner Gordon
-role = Role.new
-role["character_name"] = "Commissioner Gordon"
+
+maggie_gyllenhaal= Actor.find_by ({"name" => "Maggie Gyllenhaal"})
+
+
+role = Role.new 
+role["movie_id"] = the_dark_knight["id"]
+role["actor_id"] = maggie_gyllenhaal["id"] 
+role["character_name"] = "Rachel Dawes"
 role.save
-# The Dark Knight        Christian Bale        Bruce Wayne
-role = Role.new
-role["character_name"] = "Bruce Wayne"
+
+gary_oldman= Actor.find_by ({"name" => "Gary Oldman"})
+
+role = Role.new 
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = gary_oldman["id"]
+role["character_name"] = "Commissoner Gordon"
 role.save
-# The Dark Knight        Heath Ledger          Joker
-role = Role.new
+
+role = Role.new 
+role["movie_id"] = the_dark_knight_rises["id"]
+role["actor_id"] = gary_oldman["id"]
+role["character_name"] = "Commissoner Gordon"
+role.save
+
+heath_ledger= Actor.find_by ({"name" => "Heath Ledger"})
+
+
+role = Role.new 
+role["movie_id"] = the_dark_knight["id"]
+role["actor_id"] = heath_ledger["id"]
 role["character_name"] = "Joker"
 role.save
-# The Dark Knight        Aaron Eckhart         Harvey Dent
-role = Role.new
+
+aaron_eckhart= Actor.find_by ({"name" => "Aaron Eckhart"})
+
+role = Role.new 
+role["movie_id"] = the_dark_knight["id"]
+role["actor_id"] = aaron_eckhart["id"]
 role["character_name"] = "Harvey Dent"
 role.save
-# The Dark Knight        Michael Caine         Alfred
-role = Role.new
-role["character_name"] = "Alfred"
-role.save
-# The Dark Knight        Maggie Gyllenhaal     Rachel Dawes
-role = Role.new
-role["character_name"] = "Rachel Dawes"
-role.save
-# The Dark Knight Rises  Christian Bale        Bruce Wayne
-role = Role.new
-role["character_name"] = "Bruce Wayne"
-role.save
-# The Dark Knight Rises  Gary Oldman           Commissioner Gordon
-role = Role.new
-role["character_name"] = "Commissioner Gordon"
-role.save
-# The Dark Knight Rises  Tom Hardy             Bane
-role = Role.new
+
+tom_hardy= Actor.find_by ({"name" => "Tom Hardy"})
+
+
+role = Role.new 
+role["movie_id"] = the_dark_knight_rises["id"]
+role["actor_id"] = tom_hardy["id"]
 role["character_name"] = "Bane"
 role.save
-# The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
-role = Role.new
+
+jo_gordon_levitt= Actor.find_by ({"name" => "Joseph Gordon-Levitt"})
+
+role = Role.new 
+role["movie_id"] = the_dark_knight_rises["id"]
+role["actor_id"] = jo_gordon_levitt["id"]
 role["character_name"] = "John Blake"
 role.save
-# The Dark Knight Rises  Anne Hathaway         Selina Kyle
-role = Role.new
-role["character_name"] = "Selina Kyle"
+
+anne_hathaway= Actor.find_by ({"name" => "Anne Hathaway"})
+
+role = Role.new 
+role["movie_id"] = the_dark_knight_rises["id"]
+role["actor_id"] = anne_hathaway["id"]
+role["character_name"] = "Selena Kyle"
 role.save
 
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
 
-roles = Role.all
+roles = Role.all.order("movie_id")
 actors = Actor.all
 
 for role in roles
+    
+    role_name = role["character_name"]
     movie_id = Movie.find_by ({"id" => role["movie_id"]})
     actor_id = Actor.find_by ({"id" => role ["actor_id"]})
-    movie_title = movie_id["title"]
+    actor_name = actor["name"]
+    movie_title = movie["title"]
+
+    puts "#{movie_title}      #{actor_name}      #{role_name}"
 end 

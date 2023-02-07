@@ -71,12 +71,48 @@
 # Use `Model.destroy_all` code.
 # TODO!
 
+Studio.destroy_all
+Movie.destroy_all
+Actor.destroy_all
+Role.destroy_all
+
 # Generate models and tables, according to the domain model.
 # TODO!
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+
+new_studio = Studio.new
+new_studio["name"] = "Warner Bros."
+new_studio.save
+
+studio = Studio.find_by({"name" => "Warner Bros."})
+
+movie = Movie.new
+movie["title"] = "Batman Begins"
+movie["year_released"] = "2005"
+movie["rated"] = "PG-13"
+movie["studio_id"] = studio["id"]
+movie.save
+
+movie = Movie.new
+movie["title"] = "The Dark Knight"
+movie["year_released"] = "2008"
+movie["rated"] = "PG-13"
+movie["studio_id"] = studio["id"]
+movie.save
+
+movie = Movie.new
+movie["title"] = "The Dark Knight Rises"
+movie["year_released"] = "2012"
+movie["rated"] = "PG-13"
+movie["studio_id"] = studio["id"]
+movie.save
+
+puts movie.inspect
+
+
 
 # Prints a header for the movies output
 puts "Movies"
@@ -86,11 +122,159 @@ puts ""
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
+movies = Movie.all
+studios = Studio.all
+
+for movie in movies
+    title = movie["title"]
+    year_released = movie["year released"]
+    rated =movie["rated"]
+    studio_id = Studio.find_by ({"id" => movie["studio_id"]})
+    studio_name = studio_id ["name"]
+    puts "#{title} #{year_released} #{rated} #{studio_name}"
+
+end
+
 # Prints a header for the cast output
 puts ""
 puts "Top Cast"
 puts "========"
 puts ""
 
+#insert Actors data
+
+# Batman Begins          Christian Bale        Bruce Wayne
+actor = Actor.new
+actor["name"] = "Christian Bale"
+actor.save
+# Batman Begins          Michael Caine         Alfred
+actor = Actor.new
+actor["name"] = "Michael Caine"
+actor.save
+# Batman Begins          Liam Neeson           Ra's Al Ghul
+actor = Actor.new
+actor["name"] = "Liam Neeson"
+actor.save
+# Batman Begins          Katie Holmes          Rachel Dawes
+actor = Actor.new
+actor["name"] = "Katie Holmes"
+actor.save
+# Batman Begins          Gary Oldman           Commissioner Gordon
+actor = Actor.new
+actor["name"] = "Gary Oldman"
+actor.save
+# The Dark Knight        Christian Bale        Bruce Wayne
+actor = Actor.new
+actor["name"] = "Christian Bale"
+actor.save
+# The Dark Knight        Heath Ledger          Joker
+actor = Actor.new
+actor["name"] = "Heath Ledger"
+actor.save
+# The Dark Knight        Aaron Eckhart         Harvey Dent
+actor = Actor.new
+actor["name"] = "Aaron Eckhart"
+actor.save
+# The Dark Knight        Michael Caine         Alfred
+actor = Actor.new
+actor["name"] = "Michael Caine"
+actor.save
+# The Dark Knight        Maggie Gyllenhaal     Rachel Dawes
+actor = Actor.new
+actor["name"] = "Maggie Gyllenhaal"
+actor.save
+# The Dark Knight Rises  Christian Bale        Bruce Wayne
+actor = Actor.new
+actor["name"] = "Christian Bale"
+actor.save
+# The Dark Knight Rises  Gary Oldman           Commissioner Gordon
+actor = Actor.new
+actor["name"] = "Gary Oldman"
+actor.save
+# The Dark Knight Rises  Tom Hardy             Bane
+actor = Actor.new
+actor["name"] = "Tom Hardy"
+actor.save
+# The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
+actor = Actor.new
+actor["name"] = "Joseph Gordon-Levitt"
+actor.save
+# The Dark Knight Rises  Anne Hathaway         Selina Kyle
+actor = Actor.new
+actor["name"] = "Anne Hathaway"
+actor.save
+
+#INSERT ROLES DATA
+# Batman Begins          Christian Bale        Bruce Wayne
+role = Role.new
+role["character_name"] = "Bruce Wayne"
+role.save
+# Batman Begins          Michael Caine         Alfred
+role = Role.new
+role["character_name"] = "Alfred"
+role.save
+# Batman Begins          Liam Neeson           Ra's Al Ghul
+role = Role.new
+role["character_name"] = "Ra's Al Ahul"
+role.save
+# Batman Begins          Katie Holmes          Rachel Dawes
+role = Role.new
+role["character_name"] = "Rachel Dawes"
+role.save
+# Batman Begins          Gary Oldman           Commissioner Gordon
+role = Role.new
+role["character_name"] = "Commissioner Gordon"
+role.save
+# The Dark Knight        Christian Bale        Bruce Wayne
+role = Role.new
+role["character_name"] = "Bruce Wayne"
+role.save
+# The Dark Knight        Heath Ledger          Joker
+role = Role.new
+role["character_name"] = "Joker"
+role.save
+# The Dark Knight        Aaron Eckhart         Harvey Dent
+role = Role.new
+role["character_name"] = "Harvey Dent"
+role.save
+# The Dark Knight        Michael Caine         Alfred
+role = Role.new
+role["character_name"] = "Alfred"
+role.save
+# The Dark Knight        Maggie Gyllenhaal     Rachel Dawes
+role = Role.new
+role["character_name"] = "Rachel Dawes"
+role.save
+# The Dark Knight Rises  Christian Bale        Bruce Wayne
+role = Role.new
+role["character_name"] = "Bruce Wayne"
+role.save
+# The Dark Knight Rises  Gary Oldman           Commissioner Gordon
+role = Role.new
+role["character_name"] = "Commissioner Gordon"
+role.save
+# The Dark Knight Rises  Tom Hardy             Bane
+role = Role.new
+role["character_name"] = "Bane"
+role.save
+# The Dark Knight Rises  Joseph Gordon-Levitt  John Blake
+role = Role.new
+role["character_name"] = "John Blake"
+role.save
+# The Dark Knight Rises  Anne Hathaway         Selina Kyle
+role = Role.new
+role["character_name"] = "Selina Kyle"
+role.save
+
+
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+roles = Role.all
+actors = Actor.all
+
+for role in roles
+    movie_id = Movie.find_by ({"id" => role["movie_id"]})
+    actor_id = Actor.find_by ({"id" => role ["actor_id"]})
+    movie_title = movie_id["title"]
+end 
